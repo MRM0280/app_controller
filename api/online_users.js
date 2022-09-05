@@ -1,7 +1,5 @@
-const http = require('http');
 var fs = require('fs');
 var express = require('express');
-const { json } = require('express');
 var router = express.Router();
 
 var users = [];
