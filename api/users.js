@@ -45,16 +45,16 @@ function AddUser(json, res) {
 
 function editUser(json, res) {
     var user = {
-        name: json['name'],
         device_name: json['device_name'],
         is_signal_validate: json['is_signal_validate'],
         is_online: json['is_online'],
         get_signal: json['get_signal'],
     };
     var objIndex = users.findIndex((obj => obj.device_name == user.device_name));
-    console.log(user.is_singal_validate);
-    if(json['name']!=null){
-        user[objIndex].name = user.name
+    console.log(user.is_signal_validate);
+    if (json['name'] != null) {
+        console.log(json['name']);
+        users[objIndex].name = json['name'];
     }
     users[objIndex].device_name = user.device_name;
     users[objIndex].is_signal_validate = user.is_signal_validate;
@@ -68,16 +68,16 @@ function DelUser(device_name, res) {
     var find = users.filter(function (index) {
         return index.device_name === device_name;
     });
-        for (var i = 0; i < users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
 
-            if (users[i] === find[0]) {
+        if (users[i] === find[0]) {
 
-                users.splice(i, 1);
-            }
-
+            users.splice(i, 1);
         }
-        fs.writeFileSync('./data/users.json', JSON.stringify(users));
-        res.send({message : 'item deleted'});
+
+    }
+    fs.writeFileSync('./data/users.json', JSON.stringify(users));
+    res.send({ message: 'item deleted' });
 }
 
 module.exports = router;
