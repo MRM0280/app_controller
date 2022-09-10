@@ -61,7 +61,7 @@ function editUser(json, res) {
     users[objIndex].is_online = user.is_online;
     users[objIndex].get_signal = user.get_signal;
     fs.writeFileSync('./data/users.json', JSON.stringify(users));
-    res.send({ message: 'Item Edited' });
+    res.send(user);
 }
 
 function DelUser(device_name, res) {
