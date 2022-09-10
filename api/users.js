@@ -35,6 +35,7 @@ function AddUser(json, res) {
         name: json['device_name'],
         device_name: json['device_name'],
         is_signal_validate: true,
+        is_online: true,
         get_signal: true,
     };
     users.push(user);
@@ -44,14 +45,20 @@ function AddUser(json, res) {
 
 function editUser(json, res) {
     var user = {
+        name: json['name'],
         device_name: json['device_name'],
         is_signal_validate: json['is_signal_validate'],
+        is_online: json['is_online'],
         get_signal: json['get_signal'],
     };
     var objIndex = users.findIndex((obj => obj.device_name == user.device_name));
     console.log(user.is_singal_validate);
+    if(json['name']!=null){
+        user[objIndex].name = user.name
+    }
     users[objIndex].device_name = user.device_name;
     users[objIndex].is_signal_validate = user.is_signal_validate;
+    users[objIndex].is_online = user.is_online;
     users[objIndex].get_signal = user.get_signal;
     fs.writeFileSync('./data/users.json', JSON.stringify(users));
     res.send({ message: 'Item Edited' });
