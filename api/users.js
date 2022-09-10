@@ -3,6 +3,9 @@ var express = require('express');
 var router = express.Router();
 
 var users = [];
+var read = fs.readFileSync('./data/users.json', 'utf-8');
+
+users = JSON.parse(read);
 
 router.get('/', (req, res) => {
     if (req.body['device_name'] == null) {
