@@ -7,7 +7,7 @@ var read = fs.readFileSync('./data/users.json', 'utf-8');
 
 users = JSON.parse(read);
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     if (req.body['device_name'] == null) {
         res.send(users);
     } else {
