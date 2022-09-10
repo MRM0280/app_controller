@@ -40,7 +40,7 @@ function AddUser(json, res) {
     };
     users.push(user);
     fs.writeFileSync('./data/users.json', JSON.stringify(users));
-    res.send({ message: 'Completed' });
+    res.send(user);
 }
 
 function editUser(json, res) {
