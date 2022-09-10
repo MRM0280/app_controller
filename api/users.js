@@ -8,13 +8,12 @@ var read = fs.readFileSync('./data/users.json', 'utf-8');
 users = JSON.parse(read);
 
 router.post('/', (req, res) => {
-    res.send(req.body);
-    // if (req.body['device_name'] == null) {
-    //     res.send(users);
-    // } else {
-    //     var objIndex = users.findIndex((obj => obj.device_name == req.body['device_name']));
-    //     res.send(users[objIndex]);
-    // }
+    if (req.body['device_name'] == null) {
+        res.send(users);
+    } else {
+        var objIndex = users.findIndex((obj => obj.device_name == req.body['device_name']));
+        res.send(users[objIndex]);
+    }
 });
 
 router.post('/add', (req, res) => {
